@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SentinelNet — Passive Threat Intelligence</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Our CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     TOP NAVIGATION
+========================================================= -->
+
+<header class="topbar">
+
+    <div class="brand">
+        <div class="brand-icon">
+            <i class="fa-solid fa-fingerprint"></i>
+        </div>
+
+        <div>
+            <div class="brand-name">
+                SENTINEL<span>NET</span>
+            </div>
+
+            <div class="brand-subtitle">
+                PASSIVE THREAT INTELLIGENCE
+            </div>
+        </div>
+    </div>
+
+
+    <div class="stream-status">
+
+        <span class="status-dot"></span>
+
+        <span>STREAM LIVE</span>
+
+        <span class="divider">|</span>
+
+        <span>ONE-WAY / ZERO-TOUCH</span>
+
+    </div>
+
+
+    <div class="top-actions">
+
+        <button id="pauseBtn" class="pause-btn">
+            <i class="fa-solid fa-pause"></i>
+            <span>Pause stream</span>
+        </button>
+
+        <button id="injectTopBtn" class="inject-btn">
+            <i class="fa-solid fa-flask"></i>
+            Inject scenario
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+<main class="dashboard">
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="hero">
+
+        <div class="hero-left">
+
+            <div class="breadcrumb">
+                OPERATIONS OVERVIEW
+                <span>/</span>
+                WED, SEP 23, 2026
+            </div>
+
+            <h1>
+                Threat surface,
+                <span>decoded.</span>
+            </h1>
+
+            <p>
+                A hybrid detection mesh watching every one-way
+                flow across the protected edge.
+            </p>
+
+        </div>
+
+
+        <div class="hero-status">
+
+            <div class="status-chip">
+                <i class="fa-solid fa-microchip"></i>
+                7 AGENTS ONLINE
+            </div>
+
+            <div class="status-chip">
+                <i class="fa-regular fa-clock"></i>
+                <strong id="latency">42ms</strong>
+                INGEST LATENCY
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         KPI CARDS
+    ====================================================== -->
+
+    <section class="metrics-grid">
+
+
+        <!-- Packets -->
+
+        <div class="metric-card cyan-card">
+
+            <div class="metric-icon cyan">
+                <i class="fa-solid fa-wave-square"></i>
+            </div>
+
+            <div class="metric-label">
+                PACKETS / SECOND
+            </div>
+
+            <div class="metric-value">
+                <span id="packets">28,420</span>
+                <small>pps</small>
+            </div>
+
+            <div class="metric-change">
+                <i class="fa-solid fa-arrow-up"></i>
+                within baseline
+            </div>
+
+            <div class="metric-line"></div>
+
+        </div>
+
+
+        <!-- Active flows -->
+
+        <div class="metric-card blue-card">
+
+            <div class="metric-icon blue">
+                <i class="fa-solid fa-diagram-project"></i>
+            </div>
+
+            <div class="metric-label">
+                ACTIVE FLOWS
+            </div>
+
+            <div class="metric-value">
+                <span id="flows">392</span>
+                <small>flows</small>
+            </div>
+
+            <div class="metric-change">
+                <i class="fa-solid fa-arrow-up"></i>
+                <span id="sources">128</span>
+                active sources
+            </div>
+
+            <div class="metric-line"></div>
+
+        </div>
+
+
+        <!-- Risk -->
+
+        <div class="metric-card green-card">
+
+            <div class="metric-icon green">
+                <i class="fa-solid fa-gauge-high"></i>
+            </div>
+
+            <div class="metric-label">
+                FUSED RISK SCORE
+            </div>
+
+            <div class="metric-value">
+                <span id="riskScore">18</span>
+                <small>/ 100</small>
+            </div>
+
+            <div class="metric-change">
+                <i class="fa-solid fa-arrow-down"></i>
+                <span id="riskStatus">nominal posture</span>
+            </div>
+
+            <div class="metric-line"></div>
+
+        </div>
+
+
+        <!-- Uptime -->
+
+        <div class="metric-card green-card">
+
+            <div class="metric-icon green">
+                <i class="fa-solid fa-wifi"></i>
+            </div>
+
+            <div class="metric-label">
+                SENSOR UPTIME
+            </div>
+
+            <div class="metric-value">
+                14d 06h
+            </div>
+
+            <div class="metric-change">
+                <i class="fa-solid fa-circle-check"></i>
+                <span id="activeThreats">0 active threats</span>
+            </div>
+
+            <div class="metric-line"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         MAIN ANALYTICS
+    ====================================================== -->
+
+    <section class="analytics-grid">
+
+
+        <!-- =================================================
+             TELEMETRY
+        ================================================== -->
+
+        <div class="panel telemetry-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <div class="section-label">
+                        <i class="fa-solid fa-wave-square"></i>
+                        01 / STREAM INGEST
+                    </div>
+
+                    <h2>
+                        One-way telemetry
+                    </h2>
+
+                </div>
+
+                <div class="live-label">
+                    <span class="status-dot"></span>
+                    LIVE FEED
+                </div>
+
+            </div>
+
+
+            <!-- Chart -->
+
+            <div class="chart-container">
+
+                <canvas id="trafficChart"></canvas>
+
+            </div>
+
+
+            <div class="telemetry-footer">
+
+
+                <div class="telemetry-item">
+
+                    <span>INGEST MODE</span>
+
+                    <strong>
+                        <i class="fa-solid fa-lock"></i>
+                        PASSIVE MIRROR
+                    </strong>
+
+                </div>
+
+
+                <div class="telemetry-item">
+
+                    <span>CURRENT SCENARIO</span>
+
+                    <strong id="currentScenario">
+                        <i class="fa-solid fa-circle"></i>
+                        Baseline traffic
+                    </strong>
+
+                </div>
+
+
+                <div class="protocol-item">
+
+                    <span>PROTOCOL SPLIT</span>
+
+                    <div class="protocol-bar">
+
+                        <div class="protocol tcp"></div>
+                        <div class="protocol udp"></div>
+                        <div class="protocol dns"></div>
+                        <div class="protocol quic"></div>
+
+                    </div>
+
+                    <div class="protocol-labels">
+                        TCP 61%
+                        <span>UDP 23%</span>
+                        <span>DNS 10%</span>
+                        <span>QUIC 6%</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             RISK FUSION
+        ================================================== -->
+
+        <div class="panel risk-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <div class="section-label">
+                        <i class="fa-solid fa-atom"></i>
+                        02 / RISK FUSION ENGINE
+                    </div>
+
+                    <h2>
+                        Confidence breakdown
+                    </h2>
+
+                </div>
+
+                <div class="fusion-status">
+                    <span class="status-dot"></span>
+                    FUSION ACTIVE
+                </div>
+
+            </div>
+
+
+            <div class="risk-content">
+
+
+                <!-- Risk circle -->
+
+                <div class="risk-circle">
+
+                    <div class="circle-inner">
+
+                        <span>FUSED RISK</span>
+
+                        <strong id="riskCircle">
+                            18
+                        </strong>
+
+                        <small>/ 100</small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Explanation -->
+
+                <div class="risk-explanation">
+
+                    <div class="risk-title">
+
+                        <span id="riskLevel" class="level-badge low">
+                            LOW
+                        </span>
+
+                        <strong id="riskDescriptionTitle">
+                            Low-level recon activity
+                        </strong>
+
+                    </div>
+
+                    <p id="riskDescription">
+
+                        A single source is touching more services
+                        than its baseline, but remains below
+                        escalation threshold.
+
+                    </p>
+
+
+                    <div class="confidence-row">
+
+                        <span>CONFIDENCE</span>
+
+                        <strong id="confidence">
+                            61%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress">
+                        <div id="confidenceBar"
+                             class="progress-fill pink"
+                             style="width:61%">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Contributors -->
+
+            <div class="contributors">
+
+                <div class="contributor">
+
+                    <div>
+                        <span class="legend purple"></span>
+                        C2 Beacon
+                    </div>
+
+                    <div class="contributor-bar">
+                        <span style="width:18%"></span>
+                    </div>
+
+                    <strong>18%</strong>
+
+                </div>
+
+
+                <div class="contributor">
+
+                    <div>
+                        <span class="legend pink"></span>
+                        Anomaly
+                    </div>
+
+                    <div class="contributor-bar">
+                        <span style="width:16%"></span>
+                    </div>
+
+                    <strong>16%</strong>
+
+                </div>
+
+
+                <div class="contributor">
+
+                    <div>
+                        <span class="legend green"></span>
+                        TLS
+                    </div>
+
+                    <div class="contributor-bar">
+                        <span style="width:14%"></span>
+                    </div>
+
+                    <strong>14%</strong>
+
+                </div>
+
+
+                <div class="contributor">
+
+                    <div>
+                        <span class="legend orange"></span>
+                        Recon
+                    </div>
+
+                    <div class="contributor-bar">
+                        <span style="width:12%"></span>
+                    </div>
+
+                    <strong>12%</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         AGENTS + DETECTIONS
+    ====================================================== -->
+
+    <section class="agents-grid">
+
+
+        <!-- Agent Health -->
+
+        <div class="panel agents-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <div class="section-label">
+                        <i class="fa-solid fa-network-wired"></i>
+                        03 / DETECTION MESH
+                    </div>
+
+                    <h2>
+                        Agent health & signals
+                    </h2>
+
+                </div>
+
+                <span class="normal-label">
+                    ALL SYSTEMS NOMINAL
+                </span>
+
+            </div>
+
+
+            <div class="agent-cards">
+
+
+                <!-- DDoS -->
+
+                <div class="agent-card">
+
+                    <div class="agent-top">
+
+                        <div class="agent-icon red">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+
+                        <span class="agent-state active">
+                            ● ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h3>DDoS Agent</h3>
+
+                    <span class="agent-type">
+                        RULE / STATS
+                    </span>
+
+                    <div class="agent-confidence">
+
+                        <span>CONFIDENCE</span>
+                        <strong>8%</strong>
+
+                    </div>
+
+                    <div class="agent-progress">
+                        <span style="width:8%"></span>
+                    </div>
+
+                    <div class="agent-meta">
+                        ↗ 11 events
+                        <span>97% health</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Recon -->
+
+                <div class="agent-card">
+
+                    <div class="agent-top">
+
+                        <div class="agent-icon orange">
+                            <i class="fa-solid fa-crosshairs"></i>
+                        </div>
+
+                        <span class="agent-state active">
+                            ● ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h3>Recon Agent</h3>
+
+                    <span class="agent-type">
+                        RULE / STATS
+                    </span>
+
+                    <div class="agent-confidence">
+                        <span>CONFIDENCE</span>
+                        <strong>12%</strong>
+                    </div>
+
+                    <div class="agent-progress">
+                        <span style="width:12%"></span>
+                    </div>
+
+                    <div class="agent-meta">
+                        ↗ 16 events
+                        <span>97% health</span>
+                    </div>
+
+                </div>
+
+
+                <!-- C2 -->
+
+                <div class="agent-card">
+
+                    <div class="agent-top">
+
+                        <div class="agent-icon purple">
+                            <i class="fa-solid fa-tower-broadcast"></i>
+                        </div>
+
+                        <span class="agent-state active">
+                            ● ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h3>C2 Beacon Agent</h3>
+
+                    <span class="agent-type">
+                        ML / BEHAVIOR
+                    </span>
+
+                    <div class="agent-confidence">
+                        <span>CONFIDENCE</span>
+                        <strong>18%</strong>
+                    </div>
+
+                    <div class="agent-progress">
+                        <span style="width:18%"></span>
+                    </div>
+
+                    <div class="agent-meta">
+                        ↗ 25 events
+                        <span>97% health</span>
+                    </div>
+
+                </div>
+
+
+                <!-- DNS -->
+
+                <div class="agent-card">
+
+                    <div class="agent-top">
+
+                        <div class="agent-icon cyan">
+                            <i class="fa-solid fa-globe"></i>
+                        </div>
+
+                        <span class="agent-state active">
+                            ● ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h3>DNS Agent</h3>
+
+                    <span class="agent-type">
+                        SUPERVISED ML
+                    </span>
+
+                    <div class="agent-confidence">
+                        <span>CONFIDENCE</span>
+                        <strong>9%</strong>
+                    </div>
+
+                    <div class="agent-progress">
+                        <span style="width:9%"></span>
+                    </div>
+
+                    <div class="agent-meta">
+                        ↗ 12 events
+                        <span>98% health</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Exfil -->
+
+                <div class="agent-card">
+
+                    <div class="agent-top">
+
+                        <div class="agent-icon blue">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </div>
+
+                        <span class="agent-state active">
+                            ● ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h3>Exfil Agent</h3>
+
+                    <span class="agent-type">
+                        ML / STATS
+                    </span>
+
+                    <div class="agent-confidence">
+                        <span>CONFIDENCE</span>
+                        <strong>11%</strong>
+                    </div>
+
+                    <div class="agent-progress">
+                        <span style="width:11%"></span>
+                    </div>
+
+                    <div class="agent-meta">
+                        ↗ 15 events
+                        <span>97% health</span>
+                    </div>
+
+                </div>
+
+
+                <!-- TLS -->
+
+                <div class="agent-card">
+
+                    <div class="agent-top">
+
+                        <div class="agent-icon green">
+                            <i class="fa-solid fa-lock"></i>
+                        </div>
+
+                        <span class="agent-state active">
+                            ● ACTIVE
+                        </span>
+
+                    </div>
+
+                    <h3>Encrypted TLS Agent</h3>
+
+                    <span class="agent-type">
+                        METADATA / ML
+                    </span>
+
+                    <div class="agent-confidence">
+                        <span>CONFIDENCE</span>
+                        <strong>14%</strong>
+                    </div>
+
+                    <div class="agent-progress">
+                        <span style="width:14%"></span>
+                    </div>
+
+                    <div class="agent-meta">
+                        ↗ 19 events
+                        <span>97% health</span>
+                    </div>
+
+                </div>
+
+
+                <!-- Anomaly -->
+
+                <div class="agent-card learning">
+
+                    <div class="agent-top">
+
+                        <div class="agent-icon pink">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+
+                        <span class="agent-state learning-state">
+                            ● LEARNING
+                        </span>
+
+                    </div>
+
+                    <h3>Unknown Anomaly Agent</h3>
+
+                    <span class="agent-type">
+                        UNSUPERVISED
+                    </span>
+
+                    <div class="agent-confidence">
+                        <span>CONFIDENCE</span>
+                        <strong>16%</strong>
+                    </div>
+
+                    <div class="agent-progress">
+                        <span style="width:16%"></span>
+                    </div>
+
+                    <div class="agent-meta">
+                        ↗ 22 events
+                        <span>91% health</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Explainable detections -->
+
+        <div class="panel detections-panel">
+
+            <div class="section-label">
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                04 / THREAT SIGNALS
+            </div>
+
+            <h2>
+                Explainable detections
+            </h2>
+
+
+            <div class="filter-tabs">
+
+                <button class="filter active"
+                        data-filter="all">
+                    All signals
+                </button>
+
+                <button class="filter"
+                        data-filter="critical">
+                    Critical
+                </button>
+
+                <button class="filter"
+                        data-filter="high">
+                    High
+                </button>
+
+                <button class="filter"
+                        data-filter="anomaly">
+                    Anomaly
+                </button>
+
+                <button class="filter"
+                        data-filter="low">
+                    Low
+                </button>
+
+            </div>
+
+
+            <div id="alertsList">
+
+                <!-- Alert generated by JS -->
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         INVESTIGATION + SCENARIO LAB
+    ====================================================== -->
+
+    <section class="bottom-grid">
+
+
+        <!-- Investigation -->
+
+        <div class="panel investigation-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <div class="section-label">
+                        <i class="fa-solid fa-fingerprint"></i>
+                        05 / INVESTIGATION WORKSPACE
+                    </div>
+
+                    <h2>
+                        Why this signal fired
+                    </h2>
+
+                </div>
+
+                <div class="selected-label">
+                    SELECTED:
+                    <span id="selectedType">
+                        RECONNAISSANCE
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="investigation-header">
+
+                <div class="investigation-icon">
+                    <i class="fa-solid fa-terminal"></i>
+                </div>
+
+                <div>
+
+                    <h3 id="investigationTitle">
+                        Low-level recon activity
+                    </h3>
+
+                    <span id="investigationRoute">
+                        10.42.7.19
+                        <i class="fa-solid fa-chevron-right"></i>
+                        10.42.0.0/16
+                    </span>
+
+                </div>
+
+                <div class="investigation-confidence">
+
+                    <strong id="investigationConfidence">
+                        61%
+                    </strong>
+
+                    <span>CONFIDENCE</span>
+
+                </div>
+
+            </div>
+
+
+            <div class="investigation-content">
+
+
+                <div class="evidence">
+
+                    <div class="mini-title">
+                        EVIDENCE TRACE
+                    </div>
+
+                    <div class="evidence-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span id="evidence1">
+                            18 unique ports contacted in 5m
+                        </span>
+                    </div>
+
+                    <div class="evidence-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span id="evidence2">
+                            73% connection success rate
+                        </span>
+                    </div>
+
+                    <div class="evidence-item">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span id="evidence3">
+                            No payload or persistence signal observed
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <div class="flow-metadata">
+
+                    <div class="mini-title">
+                        FLOW METADATA
+                    </div>
+
+                    <div class="metadata-row">
+                        <span>SESSION ID</span>
+                        <strong id="sessionId">
+                            flw_seline-6
+                        </strong>
+                    </div>
+
+                    <div class="metadata-row">
+                        <span>CAPTURE MODE</span>
+                        <strong>
+                            PASSIVE / MIRRORED
+                        </strong>
+                    </div>
+
+                    <div class="metadata-row">
+                        <span>OBSERVED</span>
+                        <strong id="observedTime">
+                            12:06:40 UTC
+                        </strong>
+                    </div>
+
+                    <div class="metadata-row">
+                        <span>PAYLOAD</span>
+                        <strong class="safe">
+                            NOT INSPECTED
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Scenario Lab -->
+
+        <div class="panel scenario-panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <div class="section-label">
+                        <i class="fa-solid fa-flask"></i>
+                        06 / SCENARIO LAB
+                    </div>
+
+                    <h2>
+                        Inject a signal
+                    </h2>
+
+                </div>
+
+                <span class="demo-label">
+                    DEMO CONTROL
+                </span>
+
+            </div>
+
+
+            <p class="scenario-description">
+                Stress the fusion engine with a controlled traffic
+                pattern. No packets leave this console.
+            </p>
+
+
+            <div class="scenario-list">
+
+
+                <button class="scenario-btn"
+                        data-scenario="syn">
+
+                    <div class="scenario-icon cyan">
+                        <i class="fa-solid fa-cloud-bolt"></i>
+                    </div>
+
+                    <div>
+                        <strong>SYN Flood</strong>
+                        <span>Volumetric pressure</span>
+                    </div>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+                <button class="scenario-btn"
+                        data-scenario="c2">
+
+                    <div class="scenario-icon purple">
+                        <i class="fa-solid fa-tower-broadcast"></i>
+                    </div>
+
+                    <div>
+                        <strong>C2 Beacon</strong>
+                        <span>Periodic callback</span>
+                    </div>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+                <button class="scenario-btn"
+                        data-scenario="dga">
+
+                    <div class="scenario-icon cyan">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+
+                    <div>
+                        <strong>DGA Tunnel</strong>
+                        <span>DNS exfil pattern</span>
+                    </div>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+                <button class="scenario-btn"
+                        data-scenario="anomaly">
+
+                    <div class="scenario-icon pink">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+
+                    <div>
+                        <strong>Unknown Anomaly</strong>
+                        <span>Novel behavior</span>
+                    </div>
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+
+                <button id="restoreBtn"
+                        class="restore-btn">
+
+                    <i class="fa-solid fa-rotate-left"></i>
+                    Restore baseline
+
+                </button>
+
+            </div>
+
+
+            <div class="safety-note">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <div>
+                    <strong>PASSIVE SENSOR</strong>
+                    <span>
+                        No return path · outbound packets: 0
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ARCHITECTURE
+    ====================================================== -->
+
+    <section class="architecture-panel panel">
+
+        <div class="section-label">
+            <i class="fa-solid fa-diagram-project"></i>
+            SYSTEM ARCHITECTURE
+        </div>
+
+        <h2>
+            Passive threat detection pipeline
+        </h2>
+
+
+        <div class="architecture-flow">
+
+            <div class="architecture-step">
+                <span>01</span>
+                One-way<br>Traffic
+            </div>
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+            <div class="architecture-step">
+                <span>02</span>
+                Passive<br>Ingest
+            </div>
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+            <div class="architecture-step">
+                <span>03</span>
+                Feature<br>Extraction
+            </div>
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+            <div class="architecture-step">
+                <span>04</span>
+                Hybrid<br>Detection
+            </div>
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+            <div class="architecture-step">
+                <span>05</span>
+                Risk<br>Fusion
+            </div>
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+            <div class="architecture-step">
+                <span>06</span>
+                Explainable<br>Alert
+            </div>
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+            <div class="architecture-step">
+                <span>07</span>
+                Forensic<br>Record
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div id="toast" class="toast">
+
+    <i class="fa-solid fa-circle-check"></i>
+
+    <span id="toastMessage">
+        Scenario updated
+    </span>
+
+</div>
+
+
+<!-- =========================================================
+     CHART.JS
+========================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Our JavaScript -->
+<script src="script.js"></script>
+
+</body>
+</html>
