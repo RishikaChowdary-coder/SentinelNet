@@ -1,0 +1,50 @@
+[
+    {
+        "timestamp": 1790155187.4314814,
+        "scenario": "syn",
+        "flow": {
+            "protocol": "TCP",
+            "source_port": 35047,
+            "destination_port": 80,
+            "packet_count": 1367,
+            "byte_count": 133927,
+            "flow_duration": 0.791,
+            "packet_rate": 1727.5,
+            "byte_rate": 169245.94,
+            "average_packet_size": 97.97
+        },
+        "detection": {
+            "risk_score": 96,
+            "level": "CRITICAL",
+            "random_forest_score": 99.0,
+            "isolation_score": 100.0,
+            "rule_score": 80.0
+        },
+        "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+        "hash": "f345ff702dd85c7960830cb1cc87b733bb47e475c22fe0f1c26607021d194685"
+    },
+    {
+        "timestamp": 1790155190.486828,
+        "scenario": "c2",
+        "flow": {
+            "protocol": "TCP",
+            "source_port": 13528,
+            "destination_port": 8443,
+            "packet_count": 30,
+            "byte_count": 7738,
+            "flow_duration": 35.897,
+            "packet_rate": 0.84,
+            "byte_rate": 215.56,
+            "average_packet_size": 257.93
+        },
+        "detection": {
+            "risk_score": 80,
+            "level": "HIGH",
+            "random_forest_score": 100.0,
+            "isolation_score": 100.0,
+            "rule_score": 0
+        },
+        "previous_hash": "f345ff702dd85c7960830cb1cc87b733bb47e475c22fe0f1c26607021d194685",
+        "hash": "dead3a745047355625990542c80b43add5994552046d1674807e2f66b055953f"
+    }
+]
